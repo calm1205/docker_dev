@@ -59,3 +59,9 @@ docker stop nginx
 ```
 docker rm nginx
 ```
+
+- 停止中のコンテナと無名のイメージを削除
+
+```
+docker system prune
+```

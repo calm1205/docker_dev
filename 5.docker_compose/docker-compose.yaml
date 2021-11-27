@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: docker_compose_nginx
+    environment:
+      - env_key=env_value
+    ports:
+      - "80:80"
+    volumes:
+      - ${PWD}:/usr/share/nginx/html:ro
+  ubuntu:
+    image: ubuntu
+    container_name: docker_compose_ubuntu
+    command: ["sleep", "1500"]
+    ports:
+      - "8080:8080"
+  busybox:
+    image: busybox
+    container_name: docker_compose_busybox
+    command: ["sleep", "1500"]

@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  nginx:
+    image: nginx:latest
+    environment:
+      - env_key=env_value
+    ports:
+      - "80-82:80"
+    volumes:
+      - ${PWD}:/usr/share/nginx/html:ro
+  node:
+    image: curlimages/curl:7.68.0
+    container_name: docker_compose_curl
+    command: ["sleep", "500"]
+    ports:
+      - "8080:8080"
+  busybox:
+    image: busybox
+    container_name: docker_compose_busybox
+    command: ["sleep", "1500"]
