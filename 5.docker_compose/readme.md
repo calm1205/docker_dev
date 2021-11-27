@@ -33,7 +33,7 @@ docker compose を用いた container 起動
 ```bash
 docker compose up
 # コマンドを実行したディレクトリに有るdocker-composeファイルを参照
-# docker compose -d up バックグラウンド起動
+# docker compose up -dバックグラウンド起動
 ```
 
 docker compose で立ち上げた container の削除
@@ -76,4 +76,38 @@ services:
 ```bash
 # nginx containerを3つ作成
 docker compose -f docker-compose.rep.yaml up --scale nginx=3
+```
+
+## docker network
+
+docker compose で起動したコンテナ同士は new work 連携が可能
+
+```bash
+
+# docker compose起動
+docker compose -f docker-compose.yaml up -d
+
+# ubuntuのshにログイン
+docker exec -it docker_compose_ubuntu sh
+
+# curlをinstall
+apt update && apt install -y curl
+
+# curl実行
+curl docker_compose_nginx:80
+# -> hello world
+```
+
+docker compose で立ち上げていないコンテナからはアクセス不可
+
+```bash
+# ubuntu imageからsh起動
+docker run -it --name another_ubuntu --rm ubuntu sh
+apt update
+apt install -y curl
+
+# curlでアクセス
+curl docker_compose_nginx:80
+# -> curl: (6) Could not resolve host: docker_compose_nginx
+# docker-compose以外から立ち上げたコンテナからのアクセスは不可
 ```
