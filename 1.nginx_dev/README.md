@@ -2,9 +2,8 @@
 
 ## nginx Server のコンテナを起動 (Run)
 
-```
-docker run <container_name>
-
+```bash
+#docker run <container_name>
 docker run -d --name nginx_dev -p 80:80 nginx
 ```
 
@@ -18,9 +17,8 @@ docker run -d --name nginx_dev -p 80:80 nginx
 
 ## 作動中のコンテナの中にシェルで入る (Exec)
 
-```
-docker exec -it <container_name> <shell>
-
+```bash
+#docker exec -it <container_name> <shell>
 docker exec -it nginx sh
 ```
 
